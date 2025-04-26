@@ -1,0 +1,76 @@
+{
+  "simulation": {
+    "name": "QTrust Paper Configuration",
+    "version": "3.0.0",
+    "description": "Configuration matching the paper settings: 64 shards, 768 nodes across 5 regions",
+    "duration": 300,
+    "warmup": 60,
+    "cooldown": 30
+  },
+  "network": {
+    "total_nodes": 768,
+    "shards": 64,
+    "regions": [
+      {
+        "name": "us-east",
+        "nodes": 154,
+        "shards": 13
+      },
+      {
+        "name": "us-west",
+        "nodes": 154,
+        "shards": 13
+      },
+      {
+        "name": "eu-central",
+        "nodes": 154,
+        "shards": 13
+      },
+      {
+        "name": "asia-east",
+        "nodes": 153,
+        "shards": 13
+      },
+      {
+        "name": "australia",
+        "nodes": 153,
+        "shards": 12
+      }
+    ],
+    "topology": "mesh"
+  },
+  "transaction": {
+    "rate": 12500,
+    "distribution": {
+      "intra_shard": 0.7,
+      "cross_shard": 0.25,
+      "contract": 0.05
+    },
+    "size_range": {
+      "min": 100,
+      "max": 1000
+    }
+  },
+  "consensus": {
+    "protocol": "adaptive",
+    "trust_threshold": 0.75,
+    "byzantine_ratio": 0.05
+  },
+  "dqn": {
+    "enabled": true,
+    "learning_rate": 0.0001,
+    "batch_size": 64,
+    "memory_size": 10000,
+    "update_frequency": 10
+  },
+  "performance": {
+    "expected_tps": 12400,
+    "expected_latency_ms": 1.2,
+    "expected_byzantine_detection": 0.999
+  },
+  "output": {
+    "metrics_dir": "./benchmark_results/paper_large_scale",
+    "log_level": "INFO",
+    "generate_charts": true
+  }
+} 

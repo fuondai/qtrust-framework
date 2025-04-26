@@ -1,0 +1,149 @@
+version: "3.8"
+
+# Docker Compose file for QTrust paper configuration
+# 5 regions, 200 nodes per region, 1000 nodes total, 64 shards
+
+services:
+  # Control node for managing the benchmark
+  qtrust-control:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    container_name: qtrust-control
+    hostname: qtrust-control
+    volumes:
+      - ../config:/app/config
+      - ../benchmark_results:/app/benchmark_results
+    environment:
+      - ROLE=control
+      - LOG_LEVEL=INFO
+      - CONFIG_FILE=/app/config/paper_large_scale.json
+    command: python qtrust_main.py --log-level INFO
+    ports:
+      - "8000:8000" # API port
+    networks:
+      - qtrust-network
+
+  # Region 1: US-East (200 nodes)
+  qtrust-region-us-east:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    container_name: qtrust-region-us-east
+    hostname: qtrust-region-us-east
+    volumes:
+      - ../config:/app/config
+      - ../benchmark_results:/app/benchmark_results
+    environment:
+      - REGION=us-east
+      - NODE_COUNT=200
+      - SHARD_COUNT=13
+      - ROLE=region
+      - LOG_LEVEL=INFO
+      - CONFIG_FILE=/app/config/paper_large_scale.json
+      - CONTROL_NODE=qtrust-control:8000
+    command: python scripts/run_region.py --region us-east --nodes 200 --shards 13
+    depends_on:
+      - qtrust-control
+    networks:
+      - qtrust-network
+
+  # Region 2: US-West (200 nodes)
+  qtrust-region-us-west:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    container_name: qtrust-region-us-west
+    hostname: qtrust-region-us-west
+    volumes:
+      - ../config:/app/config
+      - ../benchmark_results:/app/benchmark_results
+    environment:
+      - REGION=us-west
+      - NODE_COUNT=200
+      - SHARD_COUNT=13
+      - ROLE=region
+      - LOG_LEVEL=INFO
+      - CONFIG_FILE=/app/config/paper_large_scale.json
+      - CONTROL_NODE=qtrust-control:8000
+    command: python scripts/run_region.py --region us-west --nodes 200 --shards 13
+    depends_on:
+      - qtrust-control
+    networks:
+      - qtrust-network
+
+  # Region 3: EU-Central (200 nodes)
+  qtrust-region-eu-central:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    container_name: qtrust-region-eu-central
+    hostname: qtrust-region-eu-central
+    volumes:
+      - ../config:/app/config
+      - ../benchmark_results:/app/benchmark_results
+    environment:
+      - REGION=eu-central
+      - NODE_COUNT=200
+      - SHARD_COUNT=13
+      - ROLE=region
+      - LOG_LEVEL=INFO
+      - CONFIG_FILE=/app/config/paper_large_scale.json
+      - CONTROL_NODE=qtrust-control:8000
+    command: python scripts/run_region.py --region eu-central --nodes 200 --shards 13
+    depends_on:
+      - qtrust-control
+    networks:
+      - qtrust-network
+
+  # Region 4: Asia-East (200 nodes)
+  qtrust-region-asia-east:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    container_name: qtrust-region-asia-east
+    hostname: qtrust-region-asia-east
+    volumes:
+      - ../config:/app/config
+      - ../benchmark_results:/app/benchmark_results
+    environment:
+      - REGION=asia-east
+      - NODE_COUNT=200
+      - SHARD_COUNT=13
+      - ROLE=region
+      - LOG_LEVEL=INFO
+      - CONFIG_FILE=/app/config/paper_large_scale.json
+      - CONTROL_NODE=qtrust-control:8000
+    command: python scripts/run_region.py --region asia-east --nodes 200 --shards 13
+    depends_on:
+      - qtrust-control
+    networks:
+      - qtrust-network
+
+  # Region 5: Australia (200 nodes)
+  qtrust-region-australia:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    container_name: qtrust-region-australia
+    hostname: qtrust-region-australia
+    volumes:
+      - ../config:/app/config
+      - ../benchmark_results:/app/benchmark_results
+    environment:
+      - REGION=australia
+      - NODE_COUNT=200
+      - SHARD_COUNT=12
+      - ROLE=region
+      - LOG_LEVEL=INFO
+      - CONFIG_FILE=/app/config/paper_large_scale.json
+      - CONTROL_NODE=qtrust-control:8000
+    command: python scripts/run_region.py --region australia --nodes 200 --shards 12
+    depends_on:
+      - qtrust-control
+    networks:
+      - qtrust-network
+
+networks:
+  qtrust-network:
+    driver: bridge

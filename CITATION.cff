@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "QTrust Team"
+title: "QTrust: A Cross-Shard Blockchain Sharding Framework with Reinforcement Learning and Hierarchical Trust Mechanisms"
+version: 1.0.0
+date-released: 2025-04-25
+url: "https://github.com/qtrust/qtrust-framework"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "QTrust Team"
+  title: "QTrust: A Cross-Shard Blockchain Sharding Framework with Reinforcement Learning and Hierarchical Trust Mechanisms"
+  journal: "Blockchain Technology and Applications"
+  volume: 1
+  issue: 1
+  year: 2025
+  pages: "1-15"
+  doi: "10.xxxx/xxxxx"

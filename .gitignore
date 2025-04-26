@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.env
+
+# PyCharm/IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Logs and local data
+*.log
+logs/
+*.sqlite
+*.db
+*.h5
+*.hdf5
+
+# QTrust specific
+benchmark_results/**/*.json
+benchmark_results/**/*.csv
+demo_results/
+test_results/
+security_results/
+transaction_generator.log
+qtrust_clustering.log
+qtrust_router.log
+qtrust_monitor.log
+qtrust.log
+benchmark_runner.log
+metrics_collector.log
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Do not ignore these files that should be in version control
+!docs/images/
+!config/*.json 

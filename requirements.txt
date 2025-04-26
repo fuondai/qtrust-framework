@@ -1,0 +1,29 @@
+# QTrust Blockchain Sharding Framework Dependencies
+# Core dependencies
+numpy>=1.22.4,<2.0.0
+pandas==2.2.0
+matplotlib==3.8.2
+networkx==3.4.2
+torch==2.7.0
+torchvision==0.22.0
+torchaudio==2.7.0
+sympy==1.13.3
+pgmpy==0.1.24
+
+# Networking and simulation
+requests==2.31.0
+docker==7.1.0
+psutil==7.0.0
+
+# Cryptography
+cryptography==42.0.0
+pycryptodome==3.19.0
+
+# Testing
+pytest==8.3.5
+pytest-cov==6.1.1
+
+# Development
+black==25.1.0
+flake8==7.2.0
+pylint==3.0.0 

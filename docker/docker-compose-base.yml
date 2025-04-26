@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  # Base node configuration that other nodes will extend
+  qtrust-node-base:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=base
+      - REGION=base
+      - SHARD_ID=0
+      - ROLE=validator
+      - TRUST_THRESHOLD=0.7
+      - CONSENSUS_PROTOCOL=adaptive
+      - LOG_LEVEL=INFO
+    volumes:
+      - qtrust-data:/app/data
+      - ../benchmark_results:/app/benchmark_results
+    networks:
+      - qtrust-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+
+networks:
+  qtrust-network:
+    driver: bridge
+
+volumes:
+  qtrust-data:

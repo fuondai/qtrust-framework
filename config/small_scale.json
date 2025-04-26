@@ -1,0 +1,76 @@
+{
+  "simulation": {
+    "name": "QTrust Small Scale Configuration",
+    "version": "3.0.0",
+    "description": "Configuration for small scale testing: 16 shards, 100 nodes across 5 regions",
+    "duration": 120,
+    "warmup": 30,
+    "cooldown": 15
+  },
+  "network": {
+    "total_nodes": 100,
+    "shards": 16,
+    "regions": [
+      {
+        "name": "us-east",
+        "nodes": 20,
+        "shards": 3
+      },
+      {
+        "name": "us-west",
+        "nodes": 20,
+        "shards": 3
+      },
+      {
+        "name": "eu-central",
+        "nodes": 20,
+        "shards": 3
+      },
+      {
+        "name": "asia-east",
+        "nodes": 20,
+        "shards": 3
+      },
+      {
+        "name": "australia",
+        "nodes": 20,
+        "shards": 4
+      }
+    ],
+    "topology": "mesh"
+  },
+  "transaction": {
+    "rate": 2000,
+    "distribution": {
+      "intra_shard": 0.7,
+      "cross_shard": 0.25,
+      "contract": 0.05
+    },
+    "size_range": {
+      "min": 100,
+      "max": 500
+    }
+  },
+  "consensus": {
+    "protocol": "adaptive",
+    "trust_threshold": 0.75,
+    "byzantine_ratio": 0.05
+  },
+  "dqn": {
+    "enabled": true,
+    "learning_rate": 0.0001,
+    "batch_size": 32,
+    "memory_size": 5000,
+    "update_frequency": 5
+  },
+  "performance": {
+    "expected_tps": 1800,
+    "expected_latency_ms": 5.0,
+    "expected_byzantine_detection": 0.95
+  },
+  "output": {
+    "metrics_dir": "./benchmark_results/small_scale",
+    "log_level": "INFO",
+    "generate_charts": true
+  }
+} 
