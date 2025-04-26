@@ -205,36 +205,6 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## Citation
 
-If you use QTrust in your research or development work, please cite our paper:
+If you use QTrust in your research or development work, please cite our paper
 
-```bibtex
-@article{QTrust2023,
-  title={QTrust: A Cross-Shard Blockchain Sharding Framework with Reinforcement Learning and Hierarchical Trust Mechanisms},
-  author={Chen, J. and Williams, R. and Singh, A. and Thompson, K. and Rodriguez, M. and QTrust Research Team},
-  journal={arXiv preprint},
-  volume={arXiv:2304.09876},
-  year={2023},
-  url={https://arxiv.org/abs/2304.09876}
-}
-```
 
-For the peer-reviewed version (forthcoming):
-
-```bibtex
-@article{QTrust2024,
-  title={QTrust: A Cross-Shard Blockchain Sharding Framework with Reinforcement Learning and Hierarchical Trust Mechanisms},
-  author={Chen, J. and Williams, R. and Singh, A. and Thompson, K. and Rodriguez, M. and QTrust Research Team},
-  journal={IEEE Transactions on Dependable and Secure Computing},
-  volume={},
-  number={},
-  pages={},
-  year={2024},
-  publisher={IEEE},
-  doi={10.1109/TDSC.2024.3329810},
-  note={Early Access}
-}
-```
-
-## Acknowledgments
-
-This research was supported in part by grants from the National Science Foundation (NSF) and the Distributed Ledger Technology Research Initiative. We extend our gratitude to the open-source community for their invaluable contributions and feedback.
