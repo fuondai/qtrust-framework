@@ -1,0 +1,95 @@
+experiment_name: qtrust_main
+seed: 1337
+
+simulation:
+  shards: 64
+  validators_per_shard: 64
+  duration_hours: 72
+  tx_arrival_tps: 4000
+  latency_log_normal_ms:
+    mean: 100
+    std: 50
+  wan_latency_ms: 150
+  bandwidth_mbps: 100
+  adversary_ratio: 0.0
+  network_bandwidth_gbps: 1.0
+  locality_optimization: true
+  base_local_tx_prob: 0.3
+
+attacks:
+  slow_poisoning:
+    enabled: false
+    warmup_minutes: 60
+    delay_ms_mean: 40
+    drop_prob: 0.02
+  collusion_sybil:
+    enabled: false
+    start_minutes: 90
+    manipulation_strength: 0.2
+
+rl:
+  algo: rainbow
+  gamma: 0.99
+  target_update_interval: 10000
+  replay_capacity: 1000000
+  batch_size: 32
+  learning_rate: 6.25e-5
+  n_step: 3
+  prioritized_alpha: 0.5
+  prioritized_beta_start: 0.4
+  prioritized_beta_end: 1.0
+  noisy_sigma0: 0.5
+  Vmin: -10.0
+  Vmax: 10.0
+  atoms: 51
+  update_every: 4
+  cvar_alpha: 0.1
+  decision_interval_seconds: 30
+
+reward:
+  w_tau: 1.0
+  w_lambda: 1.0
+  w_p: 1.0
+  w_c: 1.0
+  throughput_norm_max_tps: 5000.0
+  latency_norm_max_s: 2.0
+
+trust:
+  decay_lambda: 0.01
+  threshold_tau: 0.7
+  ewma_alpha: 0.2
+  grace_period_seconds: 120
+
+css:
+  w_tpr: 0.5
+  w_spc: 0.3
+  w_ttd: 0.2
+
+consensus:
+  coordinator_pool_size: 5
+  trust_gate_threshold: 0.75
+  mad_rapid_timeouts_ms: 500
+  enable_adaptive: true
+  fastbft_trust_threshold: 0.8
+  pbft_base_latency_ms: 30
+  fastbft_base_latency_ms: 10
+
+fl_smpc:
+  round_interval_minutes: 15
+  committee_threshold: 0.75
+  sss_prime: 2147483647
+  sss_shares: 5
+  sss_threshold: 3
+  committee_size: 21
+  approx_model_bytes: 2621440
+  dp_enabled: false
+  dp_sigma: 0.0
+  # Optional: emulate mild local heterogeneity for FL smoke tests (0.0 disables)
+  local_perturb_sigma: 0.0
+
+logging:
+  level: INFO
+  out_dir: artifacts
+  jsonl: true
+
+
